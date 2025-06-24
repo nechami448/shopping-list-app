@@ -46,38 +46,34 @@ export default function ProductForm() {
       sx={{
         display: 'flex',
         flexDirection: 'column',
-        alignItems: 'flex-start',
         width: '90%',
         maxWidth: 400,
         margin: '2rem auto',
         p: 3,
-        border: '1px solid var(--pink-color)',
-        borderRadius: 2,
-        boxShadow: '0 2px 8px var(--pink-shadow)',
-        backgroundColor: '#fff',
       }}
     >
       <TextField
         label="שם מוצר"
         value={productName}
         onChange={(e) => setProductName(e.target.value)}
+        dir="rtl"
         sx={{ width: '100%', mb: 2 }}
-        InputLabelProps={{ style: { textAlign: 'right', direction: 'rtl' } }}
-        inputProps={{ style: { textAlign: 'right', direction: 'rtl' } }}
+        inputProps={{ style: { textAlign: 'right' } }}
       />
 
       <TextField
         select
         label="קטגוריה"
+        dir="rtl"
         value={selectedCategoryId}
         onChange={(e) => setSelectedCategoryId(Number(e.target.value))}
-        sx={{ width: '100%', mb: 2 }}
+        sx={{ width: '100%', mb: 2, textAlign: 'right', direction: 'rtl' }}
         InputLabelProps={{ style: { textAlign: 'right', direction: 'rtl' } }}
         inputProps={{ style: { textAlign: 'right', direction: 'rtl' } }}
       >
         {categories && categories.length > 0 ? (
           categories.map((cat) => (
-            <MenuItem key={cat.id} value={cat.id}>
+            <MenuItem key={cat.id} value={cat.id} sx={{ textAlign: 'right', direction: 'rtl' }}>
               {cat.name}
             </MenuItem>
           ))
@@ -90,10 +86,6 @@ export default function ProductForm() {
         variant="contained"
         sx={{
           alignSelf: 'center',
-          backgroundColor: 'var(--pink-color)',
-          '&:hover': {
-            backgroundColor: 'var(--pink-color-dark)',
-          },
         }}
         onClick={handleAdd}
       >

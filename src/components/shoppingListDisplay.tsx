@@ -1,6 +1,6 @@
 import React from 'react';
 import { useSelector } from 'react-redux';
-import { Box, Grid, Typography } from '@mui/material';
+import { Box, Grid, Typography, Divider } from '@mui/material';
 import ShoppingCategoryList from './shoppingCategoryList';
 import { RootState } from '../redux/store';
 import { ShoppingListCategory } from '../types/shoppingList.type';
@@ -19,29 +19,45 @@ const ShoppingListDisplay: React.FC = () => {
     }
 
     return (
-        <Box
-            sx={{
-                position: 'fixed',
-                bottom: 0,
-                left: 0,
-                right: 0,
-                bgcolor: 'background.paper',
-                borderTop: '1px solid #ccc',
-                p: 2,
-                overflowX: 'auto',
-            }}
-        >
-            <Grid container spacing={2} wrap="nowrap" sx={{ overflowX: 'auto' }}>
-                {categories.map((category: ShoppingListCategory) => (
-                    <Box key={category.categoryName} sx={{ minWidth: 220, mx: 1 }}>
-                        <ShoppingCategoryList
-                            categoryName={category.categoryName}
-                            items={category.items}
-                        />
-                    </Box>
-                ))}
-            </Grid>
-        </Box>
+        <>
+            <Box sx={{ p: 2 }}>
+                {/* פס למעלה */}
+                <Divider sx={{ mb: 1, backgroundColor: '#702f8a', height: '4px' }} />
+
+                {/* כיתוב מתחת לפס */}
+                <Typography
+                    variant="h6"
+                    sx={{
+                        textAlign: 'center',
+                        color: '#702f8a',
+                        mb: 2,
+                        fontWeight: 'bold',
+                    }}
+                >
+                    יש לאסוף מוצרים אלו במחלקות המתאימות
+                </Typography>
+
+
+            </Box>
+            {/* הקטגוריות */}
+            <Box
+                sx={{
+                    overflowX: 'auto',
+                    textAlign: 'center',
+                }}
+            >
+                <Grid container spacing={0} wrap="nowrap" sx={{ overflowX: 'auto', flexDirection: 'row-reverse', alignItems: 'top' }}>
+                    {categories.map((category: ShoppingListCategory) => (
+                        <Box key={category.categoryName} sx={{ minWidth: 155 }}>
+                            <ShoppingCategoryList
+                                categoryName={category.categoryName}
+                                items={category.items}
+                            />
+                        </Box>
+                    ))}
+                </Grid>
+            </Box>
+        </>
     );
 };
 

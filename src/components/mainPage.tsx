@@ -3,21 +3,25 @@ import React from 'react';
 import ProductForm from './addProductForm';
 import FinishOrderButton from './finishOrderButton';
 import ShoppingListDisplay from './shoppingListDisplay';
-import ShoppingListItemCount from './shoppingListItemCount';
+import TotalItems from './totalItems';
 
 export default function MainPage() {
     return (
         <>
-            <Container maxWidth="sm" sx={{ py: 4 }}>
-                <ShoppingListItemCount />
-                <Typography variant="h4" textAlign="center" gutterBottom>
+            <Container maxWidth="md" sx={{ py: 4 }}>
+                <TotalItems />
+                <Typography variant="h1" textAlign="center"
+                    sx={{
+                        mt: '2%',
+                        color: '#702f8a',
+                        fontWeight: 'bold',
+                    }}>
                     רשימת קניות
                 </Typography>
                 <ProductForm />
                 <FinishOrderButton />
                 <ShoppingListDisplay />
             </Container>
-
         </>
     )
 }

@@ -11,15 +11,22 @@ const ShoppingCategoryList: React.FC<ShoppingCategoryListProps> = ({ categoryNam
     const totalQuantity = items.reduce((sum, item) => sum + item.quantity, 0);
 
     return (
-        <Box sx={{ p: 2, bgcolor: '#f9f9f9', borderRadius: 2, boxShadow: 1 }}>
-            <Typography variant="subtitle1" fontWeight={600} textAlign="center">
+        <Box sx={{ p: 2 }} dir="rtl">
+            <Typography
+                variant="subtitle1"
+                fontWeight={600}
+                sx={{ textAlign: 'center' }}
+            >
                 {categoryName} ({totalQuantity})
             </Typography>
 
             <List dense sx={{ mt: 1 }}>
                 {items.map((item) => (
                     <ListItem key={item.name} disablePadding>
-                        <ListItemText primary={`${item.name} - ${item.quantity}`} />
+                        <ListItemText
+                            primary={`${item.name} - ${item.quantity}`}
+                            sx={{ textAlign: 'center' }} // ✅ יישור טקסט לימין
+                        />
                     </ListItem>
                 ))}
             </List>

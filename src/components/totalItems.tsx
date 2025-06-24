@@ -3,7 +3,7 @@ import { useSelector } from 'react-redux';
 import { RootState } from '../redux/store';
 import { Box, Typography } from '@mui/material';
 
-const ShoppingListItemCount: React.FC = () => {
+const TotalItems: React.FC = () => {
     const shoppingList = useSelector((state: RootState) => state.shoppingList.shoppingList);
 
     // סכימת כל הכמויות מכל הקטגוריות
@@ -13,11 +13,11 @@ const ShoppingListItemCount: React.FC = () => {
 
     return (
         <Box sx={{ position: 'absolute', top: 16, left: 16 }}>
-            <Typography variant="subtitle1" fontWeight="bold">
-                סה"כ מוצרים: {totalItems}
+            <Typography variant="subtitle1" fontWeight="bold" color={"#702f8a"}>
+                סה"כ {totalItems} מוצרים
             </Typography>
-        </Box>
+        </Box >
     );
 };
 
-export default ShoppingListItemCount;
+export default TotalItems;

@@ -5,7 +5,33 @@ import App from './App';
 import { Provider } from 'react-redux';
 import { store } from './redux/store';
 import { ThemeProvider } from '@emotion/react';
-import { theme } from './style/theme';
+import { createTheme } from '@mui/material/styles';
+import { heIL } from "@mui/material/locale"; // תמיכה בעברית
+
+export const theme = createTheme({
+  direction: 'rtl',
+  typography: { fontFamily: 'inherit' },
+  palette: {
+    primary: {
+      main: '#702f8a', // תכלת (light blue)
+      light: '#b3e5fc',
+      dark: '#0288d1',
+      contrastText: '#fff',
+    },
+  },
+  components: {
+    MuiCssBaseline: {
+      styleOverrides: {
+        body: {
+          direction: "rtl",
+          backgroundColor: "#f5f5f5",
+        },
+      },
+    },
+  }
+},
+  heIL
+);
 
 const root = ReactDOM.createRoot(
   document.getElementById('root') as HTMLElement
