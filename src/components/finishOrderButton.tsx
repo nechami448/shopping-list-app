@@ -10,8 +10,12 @@ const FinishOrderButton: React.FC = () => {
     const dispatch = useDispatch<ThunkDispatch<RootState, void, AnyAction>>();
     const finishOrderStatus = useSelector((state: RootState) => state.shoppingList.finishOrderStatus);
     const finishOrderError = useSelector((state: RootState) => state.shoppingList.finishOrderError);
+    const shoppingList = useSelector((state: RootState) => state.shoppingList.shoppingList);
 
     const loading = finishOrderStatus === 'loading';
+
+    // בודק האם הסל ריק
+    const isShoppingListEmpty = Object.keys(shoppingList).length === 0;
 
     const handleClick = () => {
         dispatch(finishOrder());
@@ -23,7 +27,7 @@ const FinishOrderButton: React.FC = () => {
                 variant="contained"
                 color="primary"
                 onClick={handleClick}
-                disabled={loading}
+                disabled={loading || isShoppingListEmpty} // ✅ מנטרל אם הסל ריק או אם טוען
                 startIcon={loading && <CircularProgress size={20} color="inherit" />}
             >
                 {loading ? 'שולח...' : 'סיים הזמנה'}
