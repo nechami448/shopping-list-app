@@ -25,7 +25,7 @@ const ShoppingCategoryList: React.FC<ShoppingCategoryListProps> = ({ categoryNam
                     <ListItem key={item.name} disablePadding>
                         <ListItemText
                             primary={`${item.name} - ${item.quantity}`}
-                            sx={{ textAlign: 'center' }} // ✅ יישור טקסט לימין
+                            sx={{ textAlign: 'center' }} 
                         />
                     </ListItem>
                 ))}

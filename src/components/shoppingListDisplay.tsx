@@ -21,10 +21,7 @@ const ShoppingListDisplay: React.FC = () => {
     return (
         <>
             <Box sx={{ p: 2 }}>
-                {/* פס למעלה */}
                 <Divider sx={{ mb: 1, backgroundColor: '#702f8a', height: '4px' }} />
-
-                {/* כיתוב מתחת לפס */}
                 <Typography
                     variant="h6"
                     sx={{
@@ -36,8 +33,6 @@ const ShoppingListDisplay: React.FC = () => {
                 >
                     יש לאסוף מוצרים אלו במחלקות המתאימות
                 </Typography>
-
-
             </Box>
             {/* הקטגוריות */}
             <Box

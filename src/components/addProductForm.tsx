@@ -42,7 +42,6 @@ export default function ProductForm() {
 
   return (
     <Box
-      dir="rtl"
       sx={{
         display: 'flex',
         flexDirection: 'column',
@@ -67,13 +66,12 @@ export default function ProductForm() {
         dir="rtl"
         value={selectedCategoryId}
         onChange={(e) => setSelectedCategoryId(Number(e.target.value))}
-        sx={{ width: '100%', mb: 2, textAlign: 'right', direction: 'rtl' }}
-        InputLabelProps={{ style: { textAlign: 'right', direction: 'rtl' } }}
-        inputProps={{ style: { textAlign: 'right', direction: 'rtl' } }}
+        sx={{ width: '100%', mb: 2 }}
+
       >
         {categories && categories.length > 0 ? (
           categories.map((cat) => (
-            <MenuItem key={cat.id} value={cat.id} sx={{ textAlign: 'right', direction: 'rtl' }}>
+            <MenuItem key={cat.id} value={cat.id} sx={{ direction: 'ltr' }}>
               {cat.name}
             </MenuItem>
           ))

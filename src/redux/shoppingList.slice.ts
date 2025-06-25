@@ -28,7 +28,7 @@ export const finishOrder = createAsyncThunk(
       // ממיר את האובייקט למערך פשוט של מוצרים לשליחה לשרת
       const productsToSend = Object.entries(shoppingList).flatMap(([categoryId, category]) =>
         category.items.map(item => ({
-          categoryId: Number(categoryId), // כי המפתח הוא string
+          categoryId: Number(categoryId),
           productName: item.name,
           quantity: item.quantity,
         }))
@@ -40,15 +40,6 @@ export const finishOrder = createAsyncThunk(
     }
   }
 );
-
-
-// export const getShoppingListFromServer = createAsyncThunk(
-//   'shoppingList/fetchFromServer',
-//   async () => {
-//     const response = await getShoppingList();
-//     return response;
-//   }
-// );
 
 const shoppingListSlice = createSlice({
   name: 'shoppingList',
@@ -86,16 +77,6 @@ const shoppingListSlice = createSlice({
   },
   extraReducers: (builder) => {
     builder
-      // .addCase(getShoppingListFromServer.pending, (state) => {
-      //   state.status = 'loading';
-      // })
-      // .addCase(getShoppingListFromServer.fulfilled, (state, action) => {
-      //   state.status = 'succeeded';
-      //   state.shoppingList = action.payload;
-      // })
-      // .addCase(getShoppingListFromServer.rejected, (state) => {
-      //   state.status = 'failed';
-      // })
       .addCase(finishOrder.pending, (state) => {
         state.finishOrderStatus = 'loading';
         state.finishOrderError = null;
@@ -108,9 +89,7 @@ const shoppingListSlice = createSlice({
         state.finishOrderStatus = 'failed';
         state.finishOrderError = action.payload as string;
       });
-
   },
-
 });
 
 export const { addItemToShoppingList, clearShoppingList } = shoppingListSlice.actions;

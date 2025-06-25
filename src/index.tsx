@@ -4,45 +4,31 @@ import './index.css';
 import App from './App';
 import { Provider } from 'react-redux';
 import { store } from './redux/store';
-import { ThemeProvider } from '@emotion/react';
+import { CacheProvider, ThemeProvider } from '@emotion/react';
 import { createTheme } from '@mui/material/styles';
-import { heIL } from "@mui/material/locale"; // תמיכה בעברית
+import createCache from '@emotion/cache';
+import { prefixer } from "stylis";
+import rtlPlugin from "stylis-plugin-rtl";
+import { theme } from "./style/theme"
 
-export const theme = createTheme({
-  direction: 'rtl',
-  typography: { fontFamily: 'inherit' },
-  palette: {
-    primary: {
-      main: '#702f8a', // תכלת (light blue)
-      light: '#b3e5fc',
-      dark: '#0288d1',
-      contrastText: '#fff',
-    },
-  },
-  components: {
-    MuiCssBaseline: {
-      styleOverrides: {
-        body: {
-          direction: "rtl",
-          backgroundColor: "#f5f5f5",
-        },
-      },
-    },
-  }
-},
-  heIL
-);
+const cacheRtl = createCache({
+  key: "muirtl",
+  stylisPlugins: [prefixer, rtlPlugin],
+});
+
 
 const root = ReactDOM.createRoot(
   document.getElementById('root') as HTMLElement
 );
 root.render(
   <React.StrictMode>
-    <ThemeProvider theme={theme}>
-      <Provider store={store}>
-        <App />
-      </Provider>
-    </ThemeProvider>
+    <CacheProvider value={cacheRtl}>
+      <ThemeProvider theme={theme}>
+        <Provider store={store}>
+          <App />
+        </Provider>
+      </ThemeProvider>
+    </CacheProvider>
   </React.StrictMode>
 );
 
