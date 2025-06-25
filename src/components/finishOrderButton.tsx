@@ -1,5 +1,5 @@
 import React from 'react';
-import { Button, Box, CircularProgress, Typography } from '@mui/material';
+import { Button, Box, CircularProgress, Typography, Tooltip } from '@mui/material';
 import { useDispatch, useSelector } from 'react-redux';
 import type { ThunkDispatch } from '@reduxjs/toolkit';
 import type { RootState } from '../redux/store';
@@ -14,7 +14,6 @@ const FinishOrderButton: React.FC = () => {
 
     const loading = finishOrderStatus === 'loading';
 
-    // בודק האם הסל ריק
     const isShoppingListEmpty = Object.keys(shoppingList).length === 0;
 
     const handleClick = () => {
@@ -23,15 +22,27 @@ const FinishOrderButton: React.FC = () => {
 
     return (
         <Box sx={{ display: 'flex', flexDirection: 'column', alignItems: 'center', mt: 2 }}>
-            <Button
-                variant="contained"
-                color="primary"
-                onClick={handleClick}
-                disabled={loading || isShoppingListEmpty} // ✅ מנטרל אם הסל ריק או אם טוען
-                startIcon={loading && <CircularProgress size={20} color="inherit" />}
+            <Tooltip
+                title={
+                    isShoppingListEmpty
+                        ? 'לא ניתן לסיים הזמנה כאשר הסל ריק'
+                        : ''
+                }
+                arrow
+                disableHoverListener={!isShoppingListEmpty} // ✅ Tooltip יופיע רק אם הסל ריק
             >
-                {loading ? 'שולח...' : 'סיים הזמנה'}
-            </Button>
+                <span>
+                    <Button
+                        variant="contained"
+                        color="primary"
+                        onClick={handleClick}
+                        disabled={loading || isShoppingListEmpty}
+                        startIcon={loading && <CircularProgress size={20} color="inherit" />}
+                    >
+                        {loading ? 'שולח...' : 'סיים הזמנה'}
+                    </Button>
+                </span>
+            </Tooltip>
 
             {finishOrderError && (
                 <Typography color="error" variant="body2" sx={{ mt: 1 }}>
