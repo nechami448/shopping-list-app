@@ -1,5 +1,4 @@
 I added a feature to export the current shopping list to a PDF file.
-Clicking the button will create a downloadable PDF version of the current list.
 # Getting Started with Create React App
 
 This project was bootstrapped with [Create React App](https://github.com/facebook/create-react-app).
