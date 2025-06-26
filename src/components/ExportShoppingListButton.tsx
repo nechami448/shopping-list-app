@@ -110,6 +110,7 @@ const ExportShoppingListButton: React.FC = () => {
                 startIcon={<FileDownloadIcon />}
                 onClick={handleExport}
                 disabled={Object.keys(shoppingList).length === 0}
+                sx={{ direction: 'ltr' }}
             >
                 יצוא רשימה ל-PDF
             </Button>
