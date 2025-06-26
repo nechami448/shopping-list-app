@@ -21,7 +21,6 @@ export const finishOrder = createAsyncThunk(
   'shoppingList/finishOrder',
   async (_, { getState, rejectWithValue }) => {
     try {
-      debugger
       const state = getState() as { shoppingList: ShoppingListSliceState };
       const shoppingList = state.shoppingList.shoppingList;
       // ממיר את האובייקט למערך פשוט של מוצרים לשליחה לשרת
