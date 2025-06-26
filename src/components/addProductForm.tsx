@@ -12,7 +12,6 @@ export default function ProductForm() {
   const [productName, setProductName] = useState('');
   const [selectedCategoryId, setSelectedCategoryId] = useState<number | ''>('');
 
-  // טען קטגוריות אם טרם נטענו
   useEffect(() => {
     if (categories.length === 0 && status !== 'loading') {
       dispatch(loadCategories());

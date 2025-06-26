@@ -1,7 +1,7 @@
 import { createSlice, createAsyncThunk, PayloadAction } from '@reduxjs/toolkit';
 import axios from 'axios';
 import { ShoppingListState, ShoppingListItem } from '../types/shoppingList.type';
-import { createProducts } from './../services/shoppingList.service'
+import { saveShoppingList } from './../services/shoppingList.service'
 type ShoppingListSliceState = {
   shoppingList: ShoppingListState;
   status: 'idle' | 'loading' | 'succeeded' | 'failed';
@@ -24,7 +24,6 @@ export const finishOrder = createAsyncThunk(
       debugger
       const state = getState() as { shoppingList: ShoppingListSliceState };
       const shoppingList = state.shoppingList.shoppingList;
-
       // ממיר את האובייקט למערך פשוט של מוצרים לשליחה לשרת
       const productsToSend = Object.entries(shoppingList).flatMap(([categoryId, category]) =>
         category.items.map(item => ({
@@ -33,10 +32,11 @@ export const finishOrder = createAsyncThunk(
           quantity: item.quantity,
         }))
       );
-      const response = await createProducts(productsToSend);
+      const response = await saveShoppingList(productsToSend);
       return response;
     } catch (error: any) {
-      return rejectWithValue(error.response?.data || 'Error finishing order');
+      console.log(error.response?.data || 'Error finishing order')
+      return rejectWithValue('ארעה שגיאה בשמירת רשימת הקניות');
     }
   }
 );

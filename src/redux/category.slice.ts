@@ -15,8 +15,12 @@ const initialState: CategoryState = {
 export const loadCategories = createAsyncThunk(
   'categories/getAll',
   async () => {
-    const categories = await getCategories();
-    return categories;
+    try {
+      const categories = await getCategories();
+      return categories;
+    } catch (error: any) {
+      console.log(error.response?.data || 'Error finishing order')
+    }
   }
 );
 
