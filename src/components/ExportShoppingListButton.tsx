@@ -41,9 +41,9 @@ const drawUnderline = (
         startX = x - textWidth;
     }
 
-    const underlineY = y + 1.5; // קצת מתחת לטקסט
+    const underlineY = y + 1.5;
 
-    doc.setDrawColor(79, 195, 247); // צבע תכלת
+    doc.setDrawColor(112, 47, 138);
     doc.setLineWidth(0.8);
     doc.line(startX, underlineY, startX + textWidth, underlineY);
 };
@@ -103,7 +103,7 @@ const ExportShoppingListButton: React.FC = () => {
     };
 
     return (
-        <Box sx={{ mt: 2 }}>
+        <Box sx={{ display: 'flex', flexDirection: 'column', alignItems: 'center', mt: 2 }}>
             <Button
                 variant="outlined"
                 color="primary"

@@ -11,8 +11,7 @@ export default function MainPage() {
         <>
             <Container maxWidth="md" sx={{ py: 4 }}>
                 <TotalItems />
-                <ExportShoppingListButton />
-                <Typography variant="h1" textAlign="center"
+                <Typography variant="h3" textAlign="center"
                     sx={{
                         mt: '2%',
                         color: '#702f8a',
@@ -21,6 +20,7 @@ export default function MainPage() {
                     רשימת קניות
                 </Typography>
                 <ProductForm />
+                <ExportShoppingListButton />
                 <FinishOrderButton />
                 <ShoppingListDisplay />
             </Container>

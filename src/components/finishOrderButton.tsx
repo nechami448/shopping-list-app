@@ -29,7 +29,7 @@ const FinishOrderButton: React.FC = () => {
                         : ''
                 }
                 arrow
-                disableHoverListener={!isShoppingListEmpty} // ✅ Tooltip יופיע רק אם הסל ריק
+                disableHoverListener={!isShoppingListEmpty}
             >
                 <span>
                     <Button
